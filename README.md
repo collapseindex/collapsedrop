@@ -356,15 +356,25 @@ Graceful fallback for clipboard API on older browsers.
 
 ---
 
-## ☕ Support
+## ☕ Support the Project
 
-CollapseDrop is **free and open source**.
+<p align="center">
+  <a href="https://ko-fi.com/C0C41M3N0B">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support on Ko-fi">
+  </a>
+</p>
 
-If it helped you or you just think it's cool:
+CollapseDrop is **100% free and open source** - no paywalls, no premium tiers, no BS.
 
-**[☕ Buy me a coffee on Ko-fi](https://ko-fi.com/collapseindex)**
+If it saved you time, helped your project, or you just think it's cool:
 
-Or give it a ⭐ on GitHub. That helps too!
+| Way to Support | Link |
+|----------------|------|
+| ☕ **Buy me a coffee** | **[ko-fi.com/collapseindex](https://ko-fi.com/C0C41M3N0B)** |
+| ⭐ **Star on GitHub** | Hit that star button above! |
+| 📢 **Share it** | Tweet it, post it, tell a friend |
+
+*Built solo on an 8GB Ideapad 3. Every coffee helps fuel more open source!* ☕
 
 ---
 
