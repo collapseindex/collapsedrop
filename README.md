@@ -11,6 +11,8 @@
 > **🤔 Stop AI making up stuff about your site. Start real conversations!**
 >
 > Users will ask AI about your product anyway. Give them the **source of truth** instead of letting them get garbage from random web scrapes.
+> 
+> Browser AI assistants can't actually understand your site fully. Screenshots miss details. Scraping gets messy. Give YOUR users/customers curated text context - it's the only thing that actually works.
 
 ### Perfect for complex content:
 - **Technical documentation** — Let AI explain your API/SDK to newcomers
@@ -425,4 +427,5 @@ Or link to [collapseindex.org](https://collapseindex.org) 💙
   <b>Built by <a href="https://collapseindex.org">Collapse Index Labs - Alex Kwon</a></b><br>
   <sub>One person. 8GB Ideapad 3. Making AI interactions better.</sub>
 </p>
+
 
