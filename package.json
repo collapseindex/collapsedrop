@@ -1,0 +1,46 @@
+{
+  "name": "collapsedrop",
+  "version": "1.1.0",
+  "description": "BYOLLM — Context injection for the AI age. Give users copy-paste context for their favorite LLM.",
+  "main": "dist/collapsedrop.js",
+  "module": "dist/collapsedrop.esm.js",
+  "types": "dist/collapsedrop.d.ts",
+  "style": "dist/collapsedrop.css",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "npm run build:js && npm run build:css",
+    "build:js": "esbuild src/collapsedrop.js --bundle --minify --outfile=dist/collapsedrop.min.js && cp src/collapsedrop.js dist/collapsedrop.js",
+    "build:css": "cp src/collapsedrop.css dist/collapsedrop.css",
+    "dev": "live-server examples --port=3000",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/collapseindex/collapsedrop.git"
+  },
+  "keywords": [
+    "llm",
+    "ai",
+    "context",
+    "chatgpt",
+    "claude",
+    "widget",
+    "byollm",
+    "documentation",
+    "faq",
+    "copy-paste"
+  ],
+  "author": "Alex Kwon / Collapse Index Labs <ask@collapseindex.org>",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/collapseindex/collapsedrop/issues"
+  },
+  "homepage": "https://github.com/collapseindex/collapsedrop#readme",
+  "devDependencies": {
+    "esbuild": "^0.19.0",
+    "live-server": "^1.2.2"
+  }
+}

@@ -1,0 +1,382 @@
+/**
+ * CollapseDrop v1.1.0
+ * BYOLLM — Context injection for the AI age
+ * https://github.com/collapseindex/collapsedrop
+ * 
+ * Copyright (c) 2026 Alex Kwon / Collapse Index Labs
+ * All Rights Reserved.
+ * 
+ * Free to use on your sites. Cannot be sold or included in paid products.
+ * See LICENSE for full terms. Commercial licensing: licensing@collapseindex.org
+ */
+
+/* CSS Variables for theming */
+:root {
+  /* Dark theme (default) */
+  --cd-bg: #1e1e1e;
+  --cd-bg-header: #252525;
+  --cd-border: #333;
+  --cd-text: #cccccc;
+  --cd-text-muted: #888888;
+  --cd-text-title: #ffffff;
+  --cd-btn-bg: #ffffff;
+  --cd-btn-text: #000000;
+  --cd-btn-hover-bg: #60a5fa;
+  --cd-btn-hover-text: #ffffff;
+  --cd-btn-success-bg: #4ade80;
+  --cd-btn-success-text: #000000;
+  --cd-scrollbar-track: #2d2d2d;
+  --cd-scrollbar-thumb: #5a5a5a;
+  --cd-scrollbar-thumb-hover: #6a6a6a;
+  --cd-radius: 12px;
+  --cd-radius-btn: 8px;
+  --cd-font-mono: 'IBM Plex Mono', 'Fira Code', 'Consolas', 'Monaco', monospace;
+  --cd-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --cd-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --cd-shadow-btn: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --cd-transition: 0.2s ease;
+}
+
+/* Light theme */
+.collapsedrop--light {
+  --cd-bg: #f8f9fa;
+  --cd-bg-header: #ffffff;
+  --cd-border: #e0e0e0;
+  --cd-text: #333333;
+  --cd-text-muted: #666666;
+  --cd-text-title: #111111;
+  --cd-btn-bg: #111111;
+  --cd-btn-text: #ffffff;
+  --cd-btn-hover-bg: #3b82f6;
+  --cd-btn-hover-text: #ffffff;
+  --cd-scrollbar-track: #e8e8e8;
+  --cd-scrollbar-thumb: #c0c0c0;
+  --cd-scrollbar-thumb-hover: #a0a0a0;
+  --cd-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  --cd-shadow-btn: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Base container */
+.collapsedrop {
+  position: relative;
+  font-family: var(--cd-font-sans);
+  background: var(--cd-bg);
+  border: 1px solid var(--cd-border);
+  border-radius: var(--cd-radius);
+  box-shadow: var(--cd-shadow);
+  overflow: hidden;
+  transition: all var(--cd-transition);
+  --cd-bg-overlay-opacity: 0.85;
+}
+
+/* Background image support */
+.collapsedrop--has-bg {
+  background: transparent;
+}
+
+.collapsedrop__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.collapsedrop__bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--cd-bg);
+  opacity: var(--cd-bg-overlay-opacity);
+  z-index: 1;
+}
+
+.collapsedrop--has-bg .collapsedrop__header,
+.collapsedrop--has-bg .collapsedrop__body {
+  position: relative;
+  z-index: 2;
+}
+
+/* Logo */
+.collapsedrop__logo {
+  flex-shrink: 0;
+  margin-right: 16px;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+/* Header */
+.collapsedrop__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: var(--cd-bg-header);
+  border-bottom: 1px solid var(--cd-border);
+  cursor: pointer;
+  user-select: none;
+}
+
+.collapsedrop[data-collapsed="true"] .collapsedrop__header {
+  border-bottom: none;
+}
+
+.collapsedrop__title-section {
+  flex: 1;
+}
+
+.collapsedrop__title {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--cd-text-title);
+}
+
+.collapsedrop__subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: var(--cd-text-muted);
+}
+
+/* Toggle button */
+.collapsedrop__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: var(--cd-text-muted);
+  cursor: pointer;
+  transition: all var(--cd-transition);
+}
+
+.collapsedrop__toggle:hover {
+  background: var(--cd-border);
+  color: var(--cd-text);
+}
+
+.collapsedrop__toggle-icon {
+  transition: transform var(--cd-transition);
+}
+
+.collapsedrop[data-collapsed="true"] .collapsedrop__toggle-icon {
+  transform: rotate(-90deg);
+}
+
+/* Body */
+.collapsedrop__body {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.collapsedrop[data-collapsed="true"] .collapsedrop__body {
+  max-height: 0 !important;
+}
+
+/* Tabs */
+.collapsedrop__tabs {
+  display: flex;
+  gap: 4px;
+  padding: 12px 24px 0;
+  border-bottom: 1px solid var(--cd-border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.collapsedrop__tab {
+  flex-shrink: 0;
+  padding: 10px 18px;
+  font-family: var(--cd-font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cd-text-muted);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--cd-transition);
+  margin-bottom: -1px;
+}
+
+.collapsedrop__tab:hover {
+  color: var(--cd-text);
+  background: var(--cd-border);
+  border-radius: 6px 6px 0 0;
+}
+
+.collapsedrop__tab--active {
+  color: var(--cd-text-title);
+  border-bottom-color: var(--cd-btn-hover-bg);
+}
+
+.collapsedrop__tab--active:hover {
+  background: transparent;
+}
+
+/* Tabbed mode adjustments */
+.collapsedrop--tabbed .collapsedrop__toolbar {
+  border-bottom: none;
+  padding-bottom: 8px;
+}
+
+/* Toolbar */
+.collapsedrop__toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--cd-border);
+}
+
+.collapsedrop__stats {
+  font-family: var(--cd-font-mono);
+  font-size: 11px;
+  color: var(--cd-text-muted);
+}
+
+/* Action buttons container */
+.collapsedrop__actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Copy button */
+.collapsedrop__copy,
+.collapsedrop__share {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cd-btn-text);
+  background: var(--cd-btn-bg);
+  border: none;
+  border-radius: var(--cd-radius-btn);
+  box-shadow: var(--cd-shadow-btn);
+  cursor: pointer;
+  transition: all var(--cd-transition);
+}
+
+.collapsedrop__copy:hover,
+.collapsedrop__share:hover {
+  background: var(--cd-btn-hover-bg);
+  color: var(--cd-btn-hover-text);
+}
+
+.collapsedrop__copy--success,
+.collapsedrop__share--success {
+  background: var(--cd-btn-success-bg) !important;
+  color: var(--cd-btn-success-text) !important;
+}
+
+/* Content area */
+.collapsedrop__content {
+  margin: 0;
+  padding: 24px;
+  font-family: var(--cd-font-mono);
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--cd-text);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+/* Scrollbar - Webkit */
+.collapsedrop__content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.collapsedrop__content::-webkit-scrollbar-track {
+  background: var(--cd-scrollbar-track);
+  border-radius: 4px;
+}
+
+.collapsedrop__content::-webkit-scrollbar-thumb {
+  background: var(--cd-scrollbar-thumb);
+  border-radius: 4px;
+}
+
+.collapsedrop__content::-webkit-scrollbar-thumb:hover {
+  background: var(--cd-scrollbar-thumb-hover);
+}
+
+/* Scrollbar - Firefox */
+.collapsedrop__content {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cd-scrollbar-thumb) var(--cd-scrollbar-track);
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .collapsedrop__header {
+    padding: 16px;
+  }
+  
+  .collapsedrop__title {
+    font-size: 14px;
+  }
+  
+  .collapsedrop__subtitle {
+    font-size: 12px;
+  }
+  
+  .collapsedrop__toolbar {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+  
+  .collapsedrop__stats {
+    order: 2;
+  }
+  
+  .collapsedrop__actions {
+    order: 1;
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .collapsedrop__copy,
+  .collapsedrop__share {
+    width: 100%;
+  }
+  
+  .collapsedrop__content {
+    padding: 16px;
+    font-size: 11px;
+  }
+}
+
+/* Focus states for accessibility */
+.collapsedrop__toggle:focus-visible,
+.collapsedrop__copy:focus-visible,
+.collapsedrop__share:focus-visible {
+  outline: 2px solid var(--cd-btn-hover-bg);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .collapsedrop {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .collapsedrop__toggle,
+  .collapsedrop__copy,
+  .collapsedrop__share {
+    display: none;
+  }
+  
+  .collapsedrop__body {
+    max-height: none !important;
+  }
+  
+  .collapsedrop__content {
+    max-height: none;
+    overflow: visible;
+  }
+}

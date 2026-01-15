@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CollapseDrop Example</title>
+  <link rel="stylesheet" href="../src/collapsedrop.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+      margin: 0;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    
+    .tagline {
+      color: #888;
+      margin-bottom: 40px;
+    }
+    
+    .example-section {
+      margin-bottom: 60px;
+    }
+    
+    .example-section h2 {
+      font-size: 18px;
+      color: #60a5fa;
+      margin-bottom: 16px;
+    }
+    
+    .example-section p {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    
+    code {
+      background: #1e1e1e;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CollapseDrop 🎯</h1>
+    <p class="tagline">BYOLLM - Context injection for the AI age</p>
+    
+    <!-- Example 1: Auto-init with data attributes -->
+    <div class="example-section">
+      <h2>Example 1: Auto-init (Dark Theme)</h2>
+      <p>Just add <code>data-collapsedrop</code> to any element. Content inside becomes the context.</p>
+      
+      <div data-collapsedrop 
+           data-title="Ask AI About Our Product"
+           data-subtitle="Copy and paste into ChatGPT, Claude, or any LLM">
+[CONTEXT FOR AI: You are explaining this product to someone unfamiliar with it. Be helpful and accurate.]
+
+PRODUCT OVERVIEW
+================
+
+Our product does amazing things. Here's what you need to know:
+
+FEATURES:
+• Feature 1 - Does something cool
+• Feature 2 - Does something cooler  
+• Feature 3 - Does the coolest thing
+
+PRICING:
+• Free tier available
+• Pro: $10/month
+• Enterprise: Contact us
+
+--- SECTIONS FOR DEEPER DIVE ---
+
+Ask me about:
+• Features & capabilities
+• Pricing & plans
+• Technical requirements
+• Getting started
+      </div>
+    </div>
+    
+    <!-- Example 2: No share button -->
+    <div class="example-section">
+      <h2>Example 2: Without Share Button</h2>
+      <p>Add <code>data-show-share="false"</code> to hide share.</p>
+      
+      <div data-collapsedrop
+           data-show-share="false"
+           data-title="Copy Only Mode"
+           data-subtitle="Share button hidden">
+[AI CONTEXT: Simple example without share button]
+
+Just the copy button here. No share.
+      </div>
+    </div>
+    
+    <!-- Example 3: Light theme -->
+    <div class="example-section">
+      <h2>Example 3: Light Theme</h2>
+      <p>Add <code>data-theme="light"</code> for light mode.</p>
+      
+      <div data-collapsedrop
+           data-theme="light"
+           data-title="Documentation Context"
+           data-subtitle="Share this with your AI assistant">
+[AI CONTEXT: This is technical documentation. Be precise.]
+
+API DOCUMENTATION
+=================
+
+Endpoints:
+- GET /api/users - List all users
+- POST /api/users - Create user
+- GET /api/users/:id - Get user by ID
+- PUT /api/users/:id - Update user
+- DELETE /api/users/:id - Delete user
+
+Authentication:
+All requests require Bearer token in Authorization header.
+
+Rate Limits:
+- Free: 100 requests/hour
+- Pro: 10,000 requests/hour
+      </div>
+    </div>
+    
+    <!-- Example 4: Custom Colors -->
+    <div class="example-section">
+      <h2>Example 4: Custom Colors 🎨</h2>
+      <p>Use <code>data-color-*</code> attributes for brand colors.</p>
+      
+      <div data-collapsedrop
+           data-title="Brand Themed Widget"
+           data-subtitle="Purple brand colors!"
+           data-color-bg="#1a1025"
+           data-color-border="#6b21a8"
+           data-color-text="#e9d5ff"
+           data-color-title="#c084fc"
+           data-color-muted="#a855f7"
+           data-color-btn-bg="#9333ea"
+           data-color-btn-text="#ffffff"
+           data-color-btn-hover="#7c3aed"
+           data-color-success="#22c55e">
+[AI CONTEXT: Custom branded widget example]
+
+PURPLE THEME DEMO
+=================
+
+This widget uses custom brand colors!
+
+Available color options:
+• data-color-bg - Background color
+• data-color-border - Border color  
+• data-color-text - Content text color
+• data-color-title - Title color
+• data-color-muted - Subtitle/muted text
+• data-color-btn-bg - Button background
+• data-color-btn-text - Button text
+• data-color-btn-hover - Button hover
+• data-color-success - Success state (copied/shared)
+      </div>
+    </div>
+    
+    <!-- Example 5: JavaScript init -->
+    <div class="example-section">
+      <h2>Example 5: JavaScript Initialization</h2>
+      <p>Use <code>CollapseDrop.init()</code> for more control.</p>
+      
+      <div id="js-example">
+[CONTEXT FOR AI: This is a company FAQ. Answer questions based on this information.]
+
+FREQUENTLY ASKED QUESTIONS
+==========================
+
+Q: What is your refund policy?
+A: Full refund within 30 days, no questions asked.
+
+Q: Do you offer support?
+A: Yes! Email support for all plans, priority support for Pro+.
+
+Q: Can I cancel anytime?
+A: Absolutely. No contracts, cancel whenever you want.
+
+Q: Is there a free trial?
+A: Yes, 14-day free trial on all paid plans.
+
+--- TOPICS ---
+• Billing & payments
+• Account management  
+• Technical support
+• Feature requests
+      </div>
+    </div>
+    
+    <!-- Example 4: Collapsed by default -->
+    <div class="example-section">
+      <h2>Example 4: Collapsed by Default</h2>
+      <p>Add <code>data-collapsed="true"</code> to start collapsed.</p>
+      
+      <div data-collapsedrop
+           data-collapsed="true"
+           data-title="Click to expand"
+           data-subtitle="Context hidden by default">
+[AI CONTEXT: Legal terms summary]
+
+TERMS OF SERVICE (Summary)
+==========================
+
+• You own your data
+• We don't sell your information
+• Service provided as-is
+• You can export anytime
+• We can terminate for abuse
+
+Full legal terms at: example.com/terms
+      </div>
+    </div>
+    
+    <!-- Example 5: Korean language -->
+    <div class="example-section">
+      <h2>Example 5: Korean (Different Token Estimation)</h2>
+      <p>Add <code>data-language="korean"</code> for Korean token estimation (~2 chars/token).</p>
+      
+      <div data-collapsedrop
+           data-language="korean"
+           data-title="AI에게 물어보세요"
+           data-subtitle="ChatGPT, Claude 등에 붙여넣기"
+           data-copy-text="복사"
+           data-copied-text="✓ 복사됨!">
+[AI를 위한 컨텍스트: 이 제품에 대해 설명하고 있습니다.]
+
+제품 개요
+=========
+
+우리 제품은 놀라운 일을 합니다.
+
+기능:
+• 기능 1 - 멋진 것을 합니다
+• 기능 2 - 더 멋진 것을 합니다
+• 기능 3 - 가장 멋진 것을 합니다
+
+--- 더 알아보기 ---
+• 기능 & 가격
+• 기술 지원
+• 시작하기
+      </div>
+    </div>
+    
+    <!-- Example 6: Multi-Tab Support -->
+    <div class="example-section">
+      <h2>Example 6: Multi-Tab Support 📑</h2>
+      <p>Use <code>data-tab</code> on child elements to create tabs. Each tab has separate content!</p>
+      
+      <div data-collapsedrop
+           data-title="Product Documentation"
+           data-subtitle="Select a topic, then copy to your AI">
+        <div data-tab="Overview">
+[AI CONTEXT: Product overview - explain to newcomers]
+
+PRODUCT OVERVIEW
+================
+
+Our platform helps teams collaborate better.
+
+KEY FEATURES:
+• Real-time collaboration
+• Version control
+• Comment threads
+• File sharing
+
+BEST FOR:
+• Remote teams
+• Agile workflows
+• Creative projects
+        </div>
+        <div data-tab="Pricing">
+[AI CONTEXT: Pricing information - help users choose a plan]
+
+PRICING PLANS
+=============
+
+FREE TIER:
+• Up to 3 users
+• 1GB storage
+• Community support
+
+PRO ($15/user/month):
+• Unlimited users
+• 100GB storage
+• Priority support
+• Advanced analytics
+
+ENTERPRISE (Custom):
+• Unlimited everything
+• Dedicated support
+• Custom integrations
+• SLA guarantee
+        </div>
+        <div data-tab="API">
+[AI CONTEXT: API documentation - answer technical questions]
+
+API REFERENCE
+=============
+
+BASE URL: https://api.example.com/v1
+
+AUTHENTICATION:
+Authorization: Bearer YOUR_TOKEN
+
+ENDPOINTS:
+GET  /projects      - List projects
+POST /projects      - Create project
+GET  /projects/:id  - Get project
+PUT  /projects/:id  - Update project
+
+RATE LIMITS:
+• Free: 100 req/hour
+• Pro: 10,000 req/hour
+        </div>
+      </div>
+    </div>
+    
+    <!-- Example 7: Tabs with JS -->
+    <div class="example-section">
+      <h2>Example 7: Tabs via JavaScript</h2>
+      <p>Create tabs programmatically with the <code>tabs</code> option.</p>
+      
+      <div id="js-tabs-example"></div>
+    </div>
+  </div>
+  
+  <script src="../src/collapsedrop.js"></script>
+  <script>
+    // Example 3: Manual initialization with options
+    CollapseDrop.init('#js-example', {
+      theme: 'dark',
+      title: 'Company FAQ',
+      subtitle: 'AI-ready context for customer support',
+      showTokens: true,
+      showChars: true,
+      onCopy: function(content) {
+        console.log('Copied! Length:', content.length);
+      }
+    });
+    
+    // Example 7: Tabs via JavaScript
+    new CollapseDrop('#js-tabs-example', {
+      theme: 'dark',
+      title: 'Support Center',
+      subtitle: 'Choose a category and ask your AI',
+      tabs: [
+        {
+          label: 'Billing',
+          content: `[AI CONTEXT: Billing support - help with payment issues]
+
+BILLING FAQ
+===========
+
+Q: How do I update my payment method?
+A: Go to Settings > Billing > Payment Methods
+
+Q: When am I charged?
+A: Monthly on your signup anniversary date
+
+Q: Can I get a refund?
+A: Yes, within 30 days of any charge
+
+Q: Do you accept PayPal?
+A: Yes! PayPal, credit cards, and bank transfer`
+        },
+        {
+          label: 'Technical',
+          content: `[AI CONTEXT: Technical support - help with bugs/issues]
+
+TECHNICAL SUPPORT
+=================
+
+COMMON ISSUES:
+
+1. Can't log in?
+   → Clear cookies, try incognito mode
+
+2. Slow performance?
+   → Check your internet connection
+   → Disable browser extensions
+
+3. Sync not working?
+   → Click "Force Sync" in settings
+   → Check file size limits
+
+Still stuck? Email: support@example.com`
+        },
+        {
+          label: 'Account',
+          content: `[AI CONTEXT: Account management - help with account settings]
+
+ACCOUNT MANAGEMENT
+==================
+
+CHANGE EMAIL:
+Settings > Account > Email address
+
+CHANGE PASSWORD:
+Settings > Security > Change password
+
+DELETE ACCOUNT:
+Settings > Account > Delete account
+(30-day grace period, data exported first)
+
+EXPORT DATA:
+Settings > Privacy > Export all data
+(ZIP file with all your content)`
+        }
+      ],
+      onTabChange: function(index, tab) {
+        console.log('Switched to tab:', tab.label);
+      }
+    });
+  </script>
+</body>
+</html>
