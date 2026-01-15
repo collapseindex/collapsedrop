@@ -7,7 +7,7 @@
  * All Rights Reserved.
  * 
  * Free to use on your sites. Cannot be sold or included in paid products.
- * See LICENSE for full terms. Commercial licensing: licensing@collapseindex.org
+ * See LICENSE for full terms. Commercial licensing: ask@collapseindex.org
  * Support: https://ko-fi.com/collapseindex
  */
 
@@ -604,3 +604,4 @@
 
   return CollapseDrop;
 }));
+
